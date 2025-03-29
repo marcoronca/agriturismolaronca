@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
 import { Playfair_Display, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
+import { generateDefaultMetadata } from "../utils/metadata";
+import { AppPages } from "@/model/app";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -13,11 +14,7 @@ const sourceSerif = Source_Serif_4({
   weight: ["400", "600", "700"],
 });
 
-export const generate: Metadata = {
-  title: "Agriturismo La Ronca",
-  description:
-    "Experience authentic farm life and hospitality at Agriturismo La Ronca",
-};
+export const generateMetadata = generateDefaultMetadata(AppPages.Home);
 
 export default function RootLayout({
   children,

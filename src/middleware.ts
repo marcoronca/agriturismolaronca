@@ -1,21 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { AppLocale } from "./model/locale";
+import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from "./app/utils/locales";
 
 
-const getLocale = (request: NextRequest): string | undefined => {
+const getLocale = (request: NextRequest): AppLocale => {
     // Negotiator expects plain object so we need to transform headers
     const negotiatorHeaders: Record<string, string> = {};
     request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-    const locales: string[] = ['it', 'en'];
+    const locales: AppLocale[] = [...AVAILABLE_LOCALES];
 
     // Use negotiator and intl-localematcher to get best locale
     const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
         locales
     );
 
-    const locale = matchLocale(languages, locales, 'it');
+    const locale = matchLocale(languages, locales, DEFAULT_LOCALE) as AppLocale;
 
     return locale;
 }
@@ -24,7 +26,7 @@ const getLocale = (request: NextRequest): string | undefined => {
 export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
     // Check if the pathname already has a locale
-    const pathnameHasLocale = ['it', 'en'].some(
+    const pathnameHasLocale = AVAILABLE_LOCALES.some(
         locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
 
@@ -48,7 +50,7 @@ export const config = {
         * - favicon.ico, sitemap.xml, robots.txt (metadata files)
         * - .png, .webp, .svg, .jpg (image files)
         */
-        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:png|webp|svg|jpg)).*)'
+        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|favicon|images|.*\\.(?:png|webp|svg|jpg|ico)).*)',
     ],
 
 };

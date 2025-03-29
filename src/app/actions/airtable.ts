@@ -14,7 +14,7 @@ interface AirtableCacheOptions {
   queryParams?: QueryParams<FieldSet>
 }
 
-export const airtableCache = ({
+export const airtableCache = async ({
   table,
   tag,
   queryParams
@@ -22,4 +22,4 @@ export const airtableCache = ({
   unstable_cache(async () => airtable(table).select(queryParams).all(), [tag], {
     tags: [tag],
     revalidate: process.env.NODE_ENV === 'development' ? 1 : false
-  })
+  })()
