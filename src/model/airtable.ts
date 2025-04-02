@@ -1,7 +1,9 @@
 export enum AIRTABLE {
-    Contents = "Contents"
+    Contents = "Contents",
+    Media = "Media"
 }
 
 export enum API_TAG {
-    contents = 'contents'
+    contents = 'contents',
+    media = 'media',
 }

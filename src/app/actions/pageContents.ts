@@ -6,8 +6,9 @@ import { AppContents, ContentsFields } from "@/model/contents"
 import { AppLocale } from "@/model/locale"
 import { AppPages } from "@/model/app"
 
-export const getPageContents = async (lang: AppLocale, page: AppPages) => {
+export const getPageContents = async (lang: AppLocale, page: AppPages | undefined) => {
     const localeField = ContentsFields[lang.toUpperCase() as keyof typeof ContentsFields]
+    const pageFilter = page ? `PAGE = '${page}',` : ``
     const contents = await airtableCache({
         table: AIRTABLE.Contents,
         tag: API_TAG.contents,
@@ -22,7 +23,7 @@ export const getPageContents = async (lang: AppLocale, page: AppPages) => {
                     NOT(TRIM({${ContentsFields.ContentKey}}) = ''), 
                     NOT(TRIM({${localeField}}) = ''),
                     OR(
-                        PAGE = '${page}',
+                        ${pageFilter}
                         PAGE = 'All'
                     )
                 )`,
