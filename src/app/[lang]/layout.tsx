@@ -3,11 +3,7 @@ import "../globals.css";
 import { generateDefaultMetadata } from "../utils/metadata";
 import { AppPages } from "@/model/app";
 import { AppLocale } from "@/model/locale";
-import Link from "next/link";
-import Image from "next/image";
 import { getPageContents } from "../actions/pageContents";
-import NavbarLinkList from "../components/navbar/NavbarLinkList";
-import { MobileNav } from "../components/navbar/MobileNavbar";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 
