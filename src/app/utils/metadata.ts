@@ -24,7 +24,7 @@ export const generateDefaultMetadata = (page: AppPages) => async (
         applicationName: title,
         keywords: pageContents.page_keywords || parentData.keywords || '',
         alternates: {
-            canonical: '/',
+            canonical: `${process.env.FE_BASE_URL}/${lang}`,
             languages: {
                 en: `/en/`,
                 it: `/it/`

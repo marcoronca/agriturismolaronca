@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import Button from "../ui/button/Button";
 import { AppContents } from "@/model/contents";
 import NavbarLinkList from "./NavbarLinkList";
+import Image from "next/image";
 
 interface MobileNavProps {
   content: AppContents;
@@ -34,7 +35,13 @@ export const MobileNav = ({ content }: MobileNavProps) => {
       >
         <nav className="flex flex-col h-full">
           <div className="flex items-center justify-between p-4 border-b">
-            <span className="text-2xl font-bold text-stone-700">Menu</span>
+            <Image
+              className="object-contain w-14 h-14"
+              alt={content.main_logo_alt}
+              src={"/images/logoRonca.png"}
+              width={56}
+              height={56}
+            />
             <Button
               variant="ghost"
               className="p-2"

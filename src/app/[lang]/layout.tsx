@@ -6,6 +6,7 @@ import { AppLocale } from "@/model/locale";
 import { getPageContents } from "../actions/pageContents";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import { AVAILABLE_LOCALES } from "../utils/locales";
 
 const lora = Lora({
   variable: "--font-lora",
@@ -20,6 +21,10 @@ const poppins = Poppins({
 });
 
 export const generateMetadata = generateDefaultMetadata(AppPages.Home);
+
+export async function generateStaticParams() {
+  return AVAILABLE_LOCALES.map((lang) => ({ lang }));
+}
 
 export default async function RootLayout({
   children,
