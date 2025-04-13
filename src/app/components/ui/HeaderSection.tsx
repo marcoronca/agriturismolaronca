@@ -3,6 +3,7 @@ interface HeaderSectionProps {
   subtitle?: string;
   centered?: boolean;
   className?: string;
+  children?: React.ReactNode;
 }
 
 export function HeaderSection({
@@ -10,6 +11,7 @@ export function HeaderSection({
   subtitle,
   centered = true,
   className = "",
+  children,
 }: HeaderSectionProps) {
   return (
     <div className={`mb-12 ${centered ? "text-center" : ""} ${className}`}>
@@ -17,6 +19,7 @@ export function HeaderSection({
       {subtitle && (
         <p className="text-lg text-stone-600 max-w-3xl mx-auto">{subtitle}</p>
       )}
+      {children}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import React from "react";
 import NavbarLinkList from "../navbar/NavbarLinkList";
 import { MobileNav } from "../navbar/MobileNavbar";
 import { AppContents } from "@/model/contents";
+import SwitchLanguage from "../ui/SwitchLanguage";
 
 interface HeaderProps {
   globalContents: AppContents;
@@ -31,6 +32,9 @@ export default function Header({ globalContents }: HeaderProps) {
           {/* Desktop Navigation */}
           <ul className="hidden md:flex space-x-8">
             <NavbarLinkList globalContents={globalContents} />
+            <li>
+              <SwitchLanguage />
+            </li>
           </ul>
 
           {/* Mobile Navigation */}

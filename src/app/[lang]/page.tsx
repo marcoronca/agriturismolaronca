@@ -11,8 +11,10 @@ export default async function Home(props: {
   params: Promise<{ lang: AppLocale }>;
 }) {
   const { lang } = await props.params;
-  const homeContents = await getPageContents(lang, AppPages.Home);
-  const homeMedia = await getPageMedias(lang, AppPages.Home);
+  const [homeContents, homeMedia] = await Promise.all([
+    getPageContents(lang, AppPages.Home),
+    getPageMedias(lang, AppPages.Home),
+  ]);
 
   return (
     <>

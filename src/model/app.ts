@@ -8,7 +8,7 @@ export type Props<T = object> = {
 export enum AppPages {
     Home = 'Home',
     Gallery = 'Gallery',
-    Pricing = 'Pricing',
+    Prices = 'Prices',
     Services = 'Services',
     Contact = 'Contact',
 }
@@ -32,8 +32,8 @@ export const AppPagesRoutes: AppPagesRoutesType = {
         sitemapPriority: 0.9,
         changeFrequency: 'monthly'
     },
-    [AppPages.Pricing]: {
-        url: '/pricing',
+    [AppPages.Prices]: {
+        url: '/prices',
         sitemapPriority: 0.8,
         changeFrequency: 'daily'
     },
