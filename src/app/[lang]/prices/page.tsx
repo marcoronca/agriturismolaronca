@@ -1,13 +1,12 @@
 import { getPageContents } from "@/app/actions/pageContents";
 import { getPageMedias } from "@/app/actions/pageMedia";
 import { getRooms } from "@/app/actions/rooms";
+import OtherInfo from "@/app/components/OtherInfo";
 import PriceTableSection from "@/app/components/PriceTableSection";
 import { PricingCard } from "@/app/components/PricingCard";
 import { HeaderSection } from "@/app/components/ui/HeaderSection";
 import HeroSection from "@/app/components/ui/HeroSection";
-import IconSwitch from "@/app/components/ui/icons/IconSwitch";
 import { getRoomPriceForDate } from "@/app/utils/rooms";
-import { getPricesInfoSectionData } from "@/app/utils/ui";
 import { AppPages } from "@/model/app";
 import { AppLocale } from "@/model/locale";
 
@@ -20,10 +19,6 @@ export default async function Prices(props: {
     getPageMedias(lang, AppPages.Prices),
     getRooms(lang),
   ]);
-
-  const classNames = (...classes: string[]) => {
-    return classes.filter(Boolean).join(" ");
-  };
 
   return (
     <>
@@ -61,41 +56,7 @@ export default async function Prices(props: {
           className="px-4 md:px-0 max-w-7xl mx-auto"
           title={pricesContents.other_information}
         />
-        <div className="divide-y divide-white overflow-hidden rounded-lg sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0 max-w-7xl mx-auto">
-          {getPricesInfoSectionData(pricesContents).map((info, i) => (
-            <div
-              key={info.title}
-              className={classNames(
-                i === 0 ? "rounded-tl-lg rounded-tr-lg sm:rounded-tr-none" : "",
-                i === 1 ? "sm:rounded-tr-lg" : "",
-                i === getPricesInfoSectionData(pricesContents).length - 2
-                  ? "sm:rounded-bl-lg"
-                  : "",
-                i === getPricesInfoSectionData(pricesContents).length - 1
-                  ? "rounded-br-lg rounded-bl-lg sm:rounded-bl-none"
-                  : "",
-                "group relative p-6"
-              )}
-            >
-              <div>
-                <span
-                  className={
-                    "bg-stone-50 text-stone-700 inline-flex rounded-lg p-3 ring-4 ring-white"
-                  }
-                >
-                  <IconSwitch icon={info.icon} />
-                </span>
-              </div>
-              <div className="mt-8">
-                <h3 className="text-base font-semibold text-gray-900">
-                  <span aria-hidden="true" className="absolute inset-0" />
-                  {info.title}
-                </h3>
-                <p className="mt-2 text-sm text-gray-500">{info.body}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <OtherInfo contents={pricesContents} />
       </section>
     </>
   );

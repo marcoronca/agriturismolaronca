@@ -3,6 +3,7 @@ import RoomStatus from "./ui/RoomStatus";
 import { Price } from "@/model/prices";
 import { showRoomPrice } from "../utils/rooms";
 import Image from "next/image";
+import MailToButton from "./ui/MailToButton";
 
 interface PricingCardProps {
   name: string;
@@ -42,7 +43,7 @@ export function PricingCard({
       {imageSrc && (
         <Image
           src={imageSrc}
-          alt={name}
+          alt={name || "Agriturismo La Ronca"}
           height={200}
           width={300}
           className="object-cover rounded-lg mb-4 w-full"
@@ -55,6 +56,36 @@ export function PricingCard({
           </li>
         ))}
       </ul>
+      <div className="flex flex-col space-y-2">
+        <MailToButton
+          variant="primary"
+          email={contents.email_to}
+          size="lg"
+          body={contents.email_body
+            ?.replaceAll("{room}", name)
+            .replaceAll("{request_type}", contents.cta_book_now || "")}
+          subject={contents.email_subject?.replaceAll(
+            "{request_type}",
+            contents.cta_book_now || ""
+          )}
+        >
+          {contents.cta_book_now}
+        </MailToButton>
+        <MailToButton
+          variant="outline"
+          email={contents.email_to}
+          size="lg"
+          body={contents.email_body
+            ?.replaceAll("{room}", name)
+            .replaceAll("{request_type}", contents.cta_more_info || "")}
+          subject={contents.email_subject?.replaceAll(
+            "{request_type}",
+            contents.cta_more_info || ""
+          )}
+        >
+          {contents.cta_more_info}
+        </MailToButton>
+      </div>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function HeroSection({
       {mediaType == "image" ? (
         <Image
           src={imageSrc || "/images/logoRonca.png"}
-          alt={title}
+          alt={title || "Agriturismo La Ronca"}
           layout="fill"
           objectFit="cover"
           className="brightness-75"
