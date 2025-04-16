@@ -10,10 +10,7 @@ import { DEFAULT_LOCALE } from "../utils/locales"
 
 export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
     const lang = locale || DEFAULT_LOCALE
-    const localeField = MediaFields[`Media${lang.toUpperCase()}` as keyof typeof MediaFields]
-    if (!localeField) {
-        return {} as AppMedias
-    }
+
     const contents = await airtableCache({
         table: AIRTABLE.Media,
         tag: API_TAG.media,
@@ -21,14 +18,19 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
         queryParams: {
             fields: [
                 MediaFields.Key,
-                localeField
+                MediaFields.MediaIT,
+                MediaFields.MediaEN,
             ],
             filterByFormula: `PAGE = '${page}'`,
         }
     })
+    console.log(`Page Medias for ${page} (locale:${locale}, lang:${lang})`)
+    console.log({ mediasCount: contents.length })
     return contents.reduce<AppMedias>((accumulator, current) => {
         const key = current.fields[MediaFields.Key] as string
-        const media = (current.fields[localeField] as Attachment[])?.[0]
+        const mediaIT = (current.fields[MediaFields.MediaIT] as Attachment[])?.[0]
+        const mediaEN = (current.fields[MediaFields.MediaEN] as Attachment[])?.[0]
+        const media = lang === 'it' ? mediaIT : mediaEN
         if (!media) {
             return accumulator
         }

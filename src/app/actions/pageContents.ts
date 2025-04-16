@@ -9,10 +9,7 @@ import { DEFAULT_LOCALE } from "../utils/locales"
 
 export const getPageContents = async (locale: AppLocale, page: AppPages | undefined) => {
     const lang = locale || DEFAULT_LOCALE
-    const localeField = ContentsFields[lang.toUpperCase() as keyof typeof ContentsFields]
-    if (!localeField) {
-        return {} as AppContents
-    }
+
     const pageFilter = page ? `PAGE = '${page}',` : ``
     const contents = await airtableCache({
         table: AIRTABLE.Contents,
@@ -21,13 +18,17 @@ export const getPageContents = async (locale: AppLocale, page: AppPages | undefi
         queryParams: {
             fields: [
                 ContentsFields.ContentKey,
-                localeField
+                ContentsFields.IT,
+                ContentsFields.EN,
             ],
             view: AIRTABLE.Contents,
             filterByFormula: `
                 AND(
-                    NOT(TRIM({${ContentsFields.ContentKey}}) = ''), 
-                    NOT(TRIM({${localeField}}) = ''),
+                    NOT(TRIM({${ContentsFields.ContentKey}}) = ''),
+                    OR(
+                        NOT(TRIM({${ContentsFields.IT}}) = ''),
+                        NOT(TRIM({${ContentsFields.EN}}) = '')
+                    ),
                     OR(
                         ${pageFilter}
                         PAGE = 'All'
@@ -35,9 +36,12 @@ export const getPageContents = async (locale: AppLocale, page: AppPages | undefi
                 )`,
         }
     })
+    console.log(`Page Contents for ${page} (locale:${locale}, lang:${lang})`)
+    console.log({ contentsCount: contents.length })
     return contents.reduce<AppContents>((accumulator, current) => {
         const key = current.fields[ContentsFields.ContentKey] as string
-        accumulator[key] = current.fields[localeField] as string
+        const content = lang === 'it' ? current.fields[ContentsFields.IT] : current.fields[ContentsFields.EN]
+        accumulator[key] = content as string
         return accumulator
     }, {})
 }
