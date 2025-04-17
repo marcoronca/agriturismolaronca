@@ -129,6 +129,7 @@ export default async function Page(props: {
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
               loading="lazy"
+              title="Google Maps - Agriturismo La Ronca"
             ></iframe>
           </div>
         </div>
