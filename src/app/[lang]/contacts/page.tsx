@@ -4,7 +4,6 @@ import { AppPages } from "@/model/app";
 import { AppLocale } from "@/model/locale";
 import { farm } from "@lucide/lab";
 import {
-  HashIcon,
   Icon,
   MailIcon,
   MapPinnedIcon,
