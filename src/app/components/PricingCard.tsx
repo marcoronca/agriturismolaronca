@@ -24,7 +24,7 @@ export function PricingCard({
     price?.from.dateUi && price?.to.dateUi
       ? `${price.from.dateUi} - ${price.to.dateUi}`
       : "";
-  const priceValue = showRoomPrice(price);
+  const priceValue = showRoomPrice(contents)(price);
   return (
     <div className={`bg-white p-8 rounded-lg shadow-md flex flex-col`}>
       <div className="flex flex-col sm:flex-row sm:justify-between space-y-2 mb-3">

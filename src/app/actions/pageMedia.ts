@@ -10,10 +10,10 @@ import { DEFAULT_LOCALE } from "../utils/locales"
 
 export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
     const lang = locale || DEFAULT_LOCALE
-
+    const pageTag = page ? `${page}` : `global`
     const contents = await airtableCache({
         table: AIRTABLE.Media,
-        tag: API_TAG.media,
+        tag: `${lang}_${pageTag}_${API_TAG.media}`,
         revalidate: 60 * 30,
         queryParams: {
             fields: [

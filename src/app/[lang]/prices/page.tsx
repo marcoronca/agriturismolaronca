@@ -30,8 +30,8 @@ export default async function Prices(props: {
 
       <div className="container mx-auto px-4 py-16">
         <HeaderSection
-          title="9 two-room apartments and 2 three-room apartments"
-          subtitle="Take a look at the period of your stay and the type of apartment you want to book. You can also check the availability."
+          title={pricesContents.prices_section_rooms_title}
+          subtitle={pricesContents.prices_section_rooms_subtitle}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mx-auto">

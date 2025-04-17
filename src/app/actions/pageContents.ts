@@ -11,9 +11,10 @@ export const getPageContents = async (locale: AppLocale, page: AppPages | undefi
     const lang = locale || DEFAULT_LOCALE
 
     const pageFilter = page ? `PAGE = '${page}',` : ``
+    const pageTag = page ? `${page}` : `global`
     const contents = await airtableCache({
         table: AIRTABLE.Contents,
-        tag: API_TAG.contents,
+        tag: `${lang}_${pageTag}_${API_TAG.contents}`,
         revalidate: 60 * 30,
         queryParams: {
             fields: [

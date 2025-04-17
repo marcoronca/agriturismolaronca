@@ -36,17 +36,19 @@ const PriceTableSection = ({ rooms, contents }: PriceTableSectionProps) => {
               <tbody>
                 {rooms.map((room) => (
                   <Fragment key={room.id}>
-                    <tr className="text-sm/6">
-                      <th
-                        scope="colgroup"
-                        colSpan={3}
-                        className="relative isolate py-2 font-semibold"
-                      >
-                        <h3>{room.name}</h3>
-                        <div className="absolute inset-y-0 right-full -z-10 w-screen border-b border-stone-100 bg-stone-100" />
-                        <div className="absolute inset-y-0 left-0 -z-10 w-screen border-b border-stone-100 bg-stone-100" />
-                      </th>
-                    </tr>
+                    {room.prices?.length > 0 && (
+                      <tr className="text-sm/6">
+                        <th
+                          scope="colgroup"
+                          colSpan={3}
+                          className="relative isolate py-2 font-semibold"
+                        >
+                          <h3>{room.name}</h3>
+                          <div className="absolute inset-y-0 right-full -z-10 w-screen border-b border-stone-100 bg-stone-100" />
+                          <div className="absolute inset-y-0 left-0 -z-10 w-screen border-b border-stone-100 bg-stone-100" />
+                        </th>
+                      </tr>
+                    )}
                     {room.prices.map((price) => (
                       <tr key={price.id}>
                         <td className="relative py-5 pr-6">
