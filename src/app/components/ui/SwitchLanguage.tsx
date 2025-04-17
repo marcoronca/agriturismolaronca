@@ -10,8 +10,8 @@ export default function SwitchLanguage() {
   const [isChecked, setIsChecked] = useState(
     lang === DEFAULT_LOCALE ? false : true
   );
-  const handleChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const newStatus = event.currentTarget.ariaChecked === "true" ? false : true;
+  const handleChange = () => {
+    const newStatus = !isChecked;
     const newLang = newStatus ? "en" : "it";
     setIsChecked(newStatus);
     const currentPath = window.location.pathname;
