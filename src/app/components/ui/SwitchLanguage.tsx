@@ -10,28 +10,39 @@ export default function SwitchLanguage() {
   const [isChecked, setIsChecked] = useState(
     lang === DEFAULT_LOCALE ? false : true
   );
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newLang = event.target.checked ? "en" : "it";
-    setIsChecked(event.target.checked);
+  const handleChange = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const newStatus = event.currentTarget.ariaChecked === "true" ? false : true;
+    const newLang = newStatus ? "en" : "it";
+    setIsChecked(newStatus);
     const currentPath = window.location.pathname;
     const newPath = currentPath.replace(`/${lang}`, `/${newLang}`);
     router.push(newPath);
   };
   return (
-    <div className="flex items-center justify-center gap-2">
-      <span className="text-sm font-semibold">IT</span>
-      <label className="relative inline-flex cursor-pointer items-center">
-        <input
-          type="checkbox"
-          onChange={handleChange}
-          checked={isChecked}
-          value={isChecked ? "en" : "it"}
-          className="peer sr-only"
-        />
-        <div className="h-6 w-11 rounded-full  peer-focus:outline-none bg-gray-700"></div>
-        <span className="absolute left-1 top-[50%] -translate-y-[50%] h-4 w-4 rounded-full bg-white transition-all duration-300 ease-in-out peer-checked:-translate-x-[100%] peer-checked:left-[calc(100%-0.25rem)] "></span>
-      </label>
-      <span className="text-sm font-semibold">EN</span>
+    <div className="flex items-center">
+      <span className="mr-3 text-sm">
+        <span className="text-sm font-semibold" id="lang_it">
+          IT
+        </span>
+      </span>
+      <button
+        type="button"
+        className="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-700 transition-colors duration-200 ease-in-out"
+        role="switch"
+        aria-checked={isChecked}
+        aria-labelledby={isChecked ? "lang_en" : "lang_it"}
+        onClick={handleChange}
+      >
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none inline-block size-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out ${
+            isChecked ? "translate-x-5" : "translate-x-0"
+          }`}
+        ></span>
+      </button>
+      <span className="ml-3 text-sm" id="lang_en">
+        <span className="text-sm font-semibold">EN</span>
+      </span>
     </div>
   );
 }

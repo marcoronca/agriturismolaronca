@@ -24,8 +24,8 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
             filterByFormula: `PAGE = '${page}'`,
         }
     })
-    console.log(`Page Medias for ${page} (locale:${locale}, lang:${lang})`)
-    console.log({ mediasCount: contents.length })
+    console.log(`Page Medias for page: ${page} (locale:${locale}, lang:${lang})`)
+    console.log(`Medias: ${contents.length}`)
     return contents.reduce<AppMedias>((accumulator, current) => {
         const key = current.fields[MediaFields.Key] as string
         const mediaIT = (current.fields[MediaFields.MediaIT] as Attachment[])?.[0]

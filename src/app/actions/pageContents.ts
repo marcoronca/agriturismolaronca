@@ -37,8 +37,8 @@ export const getPageContents = async (locale: AppLocale, page: AppPages | undefi
                 )`,
         }
     })
-    console.log(`Page Contents for ${page} (locale:${locale}, lang:${lang})`)
-    console.log({ contentsCount: contents.length })
+    console.log(`Page Contents for page: ${page} (locale:${locale}, lang:${lang})`)
+    console.log(`Content: ${contents.length}`)
     return contents.reduce<AppContents>((accumulator, current) => {
         const key = current.fields[ContentsFields.ContentKey] as string
         const content = lang === 'it' ? current.fields[ContentsFields.IT] : current.fields[ContentsFields.EN]
