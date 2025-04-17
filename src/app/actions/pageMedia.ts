@@ -10,10 +10,10 @@ import { DEFAULT_LOCALE } from "../utils/locales"
 
 export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
     const lang = locale || DEFAULT_LOCALE
-
+    const pageTag = page ? `${page}` : `global`
     const contents = await airtableCache({
         table: AIRTABLE.Media,
-        tag: API_TAG.media,
+        tag: `${lang}_${pageTag}_${API_TAG.media}`,
         revalidate: 60 * 30,
         queryParams: {
             fields: [
@@ -24,8 +24,8 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
             filterByFormula: `PAGE = '${page}'`,
         }
     })
-    console.log(`Page Medias for ${page} (locale:${locale}, lang:${lang})`)
-    console.log({ mediasCount: contents.length })
+    console.log(`Page Medias for page: ${page} (locale:${locale}, lang:${lang})`)
+    console.log(`Medias: ${contents.length}`)
     return contents.reduce<AppMedias>((accumulator, current) => {
         const key = current.fields[MediaFields.Key] as string
         const mediaIT = (current.fields[MediaFields.MediaIT] as Attachment[])?.[0]

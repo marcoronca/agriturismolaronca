@@ -1,8 +1,9 @@
+import { AppContents } from "@/model/contents";
 import { Price } from "@/model/prices";
 
-export const showRoomPrice = (roomPrice?: Price): string => {
+export const showRoomPrice = (contents: AppContents) => (roomPrice?: Price): string => {
     const price = roomPrice?.price ?? -1;
-    return price !== -1 ? `€ ${price}` : "Price not available";
+    return price !== -1 ? `€ ${price}` : contents.price_not_available;
 }
 export const showStatusForCurrentDate = (roomPrices: Price[]): string | undefined => {
     const today = new Date();

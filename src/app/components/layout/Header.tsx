@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export default function Header({ globalContents }: HeaderProps) {
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-10">
+    <header className="bg-white shadow-2xs sticky top-0 z-10">
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16">
           <Link
