@@ -20,11 +20,19 @@ export function Card({
   descriptionClassName = "",
   imagesCarousel = [],
 }: CardProps) {
-  const imageType = imageSrc ? "single" : "swiper";
+  // Determine if we have carousel images available
+  const hasCarouselImages = imagesCarousel.length > 0;
+
+  // Determine which type of image display to use
+  const imageDisplayType = hasCarouselImages
+    ? "swiper"
+    : imageSrc
+    ? "single"
+    : null;
 
   return (
     <div className={`p-6 rounded-lg shadow-md ${cardClassName}`}>
-      {imageType === "single" && (
+      {imageDisplayType === "single" && (
         <Image
           src={imageSrc || "/images/logoRonca.png"}
           alt={title}
@@ -33,7 +41,7 @@ export function Card({
           className="rounded-lg mb-4 w-full h-48 object-cover"
         />
       )}
-      {imageType === "swiper" && (
+      {imageDisplayType === "swiper" && (
         <SwiperWrapper className="mb-4 swiper-card">
           {imagesCarousel.map((src, index) => (
             <Image
