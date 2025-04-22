@@ -25,7 +25,7 @@ export default async function Prices(props: {
       <HeroSection
         title={pricesContents.hero_section_title}
         subtitle={pricesContents.hero_section_subtitle}
-        imageSrc={pricesMedia.hero_section_image?.url}
+        imageSrc={pricesMedia.hero_section_image?.[0].url}
       />
 
       <div className="container mx-auto px-4 py-16">

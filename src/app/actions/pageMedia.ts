@@ -28,16 +28,16 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
     console.log(`Medias: ${contents.length}`)
     return contents.reduce<AppMedias>((accumulator, current) => {
         const key = current.fields[MediaFields.Key] as string
-        const mediaIT = (current.fields[MediaFields.MediaIT] as Attachment[])?.[0]
-        const mediaEN = (current.fields[MediaFields.MediaEN] as Attachment[])?.[0]
+        const mediaIT = (current.fields[MediaFields.MediaIT] as Attachment[])
+        const mediaEN = (current.fields[MediaFields.MediaEN] as Attachment[])
         const media = lang === 'it' ? mediaIT : mediaEN
         if (!media) {
             return accumulator
         }
-        accumulator[key] = {
+        accumulator[key] = media.map((media) => ({
             url: media.url,
             type: media.type,
-        }
+        }))
         return accumulator
     }, {})
 }

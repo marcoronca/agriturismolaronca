@@ -3,6 +3,8 @@
 @theme {
   --font-heading: var(--font-lora), serif;
   --font-body: var(--font-poppins), sans-serif;
+
+  --swiper-theme-color: oklch(0.268 0.007 34.298);
 }
 
 @layer base {
@@ -55,5 +57,15 @@
 
   .btn-lg {
     @apply text-lg px-6 py-3;
+  }
+}
+.swiper-card {
+  .swiper-button-prev,
+  .swiper-button-next,
+  .swiper-pagination-bullet {
+    @apply text-stone-100 opacity-100 hover:opacity-100 transition-opacity aria-disabled:hidden;
+  }
+  .swiper-pagination-bullet-active {
+    @apply bg-stone-200;
   }
 }

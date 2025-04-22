@@ -4,9 +4,10 @@ export enum MediaFields {
     MediaEN = 'MediaEN'
 }
 
+export type Media = {
+    url: string;
+    type: string;
+};
 export interface AppMedias {
-    [key: string]: {
-        url: string;
-        type: string;
-    };
+    [key: string]: Media[];
 }

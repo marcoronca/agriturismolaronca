@@ -123,9 +123,7 @@ export default async function Page(props: {
           <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2915.4233000319164!2d10.549220999999998!3d43.053564!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d61ec087731aaf%3A0x164a5fed4003aea6!2sAgriturismo+La+Ronca!5e0!3m2!1sit!2sit!4v1413193107748"
-              width="700"
-              height="500"
-              className="border-0 rounded-md"
+              className="border-0 rounded-md w-full h-[34rem] "
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
               loading="lazy"

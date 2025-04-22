@@ -23,9 +23,9 @@ export default async function Home(props: {
         subtitle={homeContents.hero_section_subtitle}
         buttonText={homeContents.hero_section_cta_text}
         buttonLink={homeContents.hero_section_cta_link}
-        videoSrc={homeMedia.hero_section_video?.url}
-        imageSrc={homeMedia.hero_section_image?.url}
-        videoType={homeMedia.hero_section_video?.type}
+        videoSrc={homeMedia.hero_section_video?.[0].url}
+        imageSrc={homeMedia.hero_section_image?.[0].url}
+        videoType={homeMedia.hero_section_video?.[0].type}
       />
 
       <section className="py-16 bg-white">
