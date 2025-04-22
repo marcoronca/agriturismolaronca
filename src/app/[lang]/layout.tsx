@@ -1,4 +1,7 @@
 import { Lora, Poppins } from "next/font/google";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "../globals.css";
 import { generateDefaultMetadata } from "../utils/metadata";
 import { AppPages } from "@/model/app";

@@ -1,6 +1,12 @@
-const GridEffect = () => {
+interface GridEffectProps {
+  className?: string;
+}
+
+const GridEffect = ({ className = "" }: GridEffectProps) => {
   return (
-    <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-stone-100 border-r-1 border-gray-700/5 lg:w-1/2">
+    <div
+      className={`absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-stone-100 border-r-1 border-gray-700/5 lg:w-1/2 ${className}`}
+    >
       <svg
         aria-hidden="true"
         className="absolute inset-0 size-full [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)] stroke-gray-200"
