@@ -16,7 +16,7 @@ export default function SwitchLanguage() {
     setIsChecked(newStatus);
     const currentPath = window.location.pathname;
     const newPath = currentPath.replace(`/${lang}`, `/${newLang}`);
-    router.push(newPath);
+    router.replace(newPath);
   };
   return (
     <div className="flex items-center">

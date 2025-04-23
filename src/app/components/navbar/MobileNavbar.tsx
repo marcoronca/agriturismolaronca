@@ -6,12 +6,16 @@ import Button from "../ui/button/Button";
 import { AppContents } from "@/model/contents";
 import NavbarLinkList from "./NavbarLinkList";
 import Image from "next/image";
+import { AppLocale } from "@/model/locale";
+import SwitchLanguage from "../ui/SwitchLanguage";
+import Link from "next/link";
 
 interface MobileNavProps {
   content: AppContents;
+  lang: AppLocale;
 }
 
-export const MobileNav = ({ content }: MobileNavProps) => {
+export const MobileNav = ({ content, lang }: MobileNavProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -53,7 +57,19 @@ export const MobileNav = ({ content }: MobileNavProps) => {
             </Button>
           </div>
           <ul className="flex flex-col p-4 space-y-4">
-            <NavbarLinkList globalContents={content} onClick={toggleMenu} />
+            <li>
+              <Link onClick={toggleMenu} href={`/${lang}/`}>
+                Home
+              </Link>
+            </li>
+            <NavbarLinkList
+              globalContents={content}
+              onClick={toggleMenu}
+              lang={lang}
+            />
+            <li>
+              <SwitchLanguage />
+            </li>
           </ul>
         </nav>
       </div>

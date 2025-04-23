@@ -1,3 +1,4 @@
+import { Media } from "./media";
 import { Price } from "./prices";
 
 export enum RoomFields {
@@ -24,10 +25,7 @@ export interface RoomResponse {
 export interface Room {
     id: string;
     name: string;
-    images: {
-        url: string;
-        type: string;
-    }[];
+    images: Media[];
     prices: Price[];
     features: string[];
 }

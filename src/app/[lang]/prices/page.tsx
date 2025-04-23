@@ -39,7 +39,7 @@ export default async function Prices(props: {
             <PricingCard
               key={room.id}
               name={room.name}
-              imageSrc={room.images[0]?.url}
+              images={room.images}
               contents={pricesContents}
               price={getRoomPriceForDate(room.prices, new Date())}
               features={room.features}
