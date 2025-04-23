@@ -29,12 +29,14 @@ export function middleware(request: NextRequest) {
     const pathnameHasLocale = AVAILABLE_LOCALES.some(
         locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
+    //console.log("✅ Pathname has locale:", pathnameHasLocale);
 
     if (pathnameHasLocale) return;
 
     // Redirect if there is no locale
     const locale = getLocale(request);
     request.nextUrl.pathname = `/${locale}${pathname}`;
+    //console.log("❌ Redirecting to:", request.nextUrl.pathname);
 
     // Redirect to the localized URL
     return NextResponse.redirect(request.nextUrl);

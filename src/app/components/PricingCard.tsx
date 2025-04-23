@@ -4,19 +4,21 @@ import { Price } from "@/model/prices";
 import { showRoomPrice } from "../utils/rooms";
 import Image from "next/image";
 import MailToButton from "./ui/MailToButton";
+import { Media } from "@/model/media";
+import SwiperWrapper from "./ui/Swiper";
 
 interface PricingCardProps {
   name: string;
   price?: Price;
   features: string[];
-  imageSrc?: string;
+  images?: Media[];
   contents: AppContents;
 }
 
 export function PricingCard({
   name,
   price,
-  imageSrc,
+  images,
   features,
   contents,
 }: PricingCardProps) {
@@ -39,15 +41,19 @@ export function PricingCard({
           )}
         </div>
       </div>
-      {/* Add image using Next image and set it with a fixed height, but full width */}
-      {imageSrc && (
-        <Image
-          src={imageSrc}
-          alt={name || "Agriturismo La Ronca"}
-          height={200}
-          width={300}
-          className="object-cover rounded-lg mb-4 w-full"
-        />
+      {images && images.length > 0 && (
+        <SwiperWrapper className="mb-4 w-full rounded-lg swiper-card">
+          {images.map((image, index) => (
+            <Image
+              key={index}
+              src={image.url}
+              alt={name || "Agriturismo La Ronca"}
+              height={200}
+              width={300}
+              className="object-cover w-full"
+            />
+          ))}
+        </SwiperWrapper>
       )}
       <ul className="mb-8 flex-grow">
         {features.map((feature, index) => (

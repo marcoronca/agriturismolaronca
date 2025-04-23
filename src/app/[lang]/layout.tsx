@@ -45,9 +45,9 @@ export default async function RootLayout({
       className={`${lora.variable} ${poppins.variable} antialiased`}
     >
       <body className={`antialiased  min-h-screen`}>
-        <Header globalContents={globalContents} />
+        <Header globalContents={globalContents} lang={lang} />
         <main>{children}</main>
-        <Footer globalContents={globalContents} />
+        <Footer globalContents={globalContents} lang={lang} />
       </body>
     </html>
   );

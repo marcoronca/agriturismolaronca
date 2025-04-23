@@ -1,18 +1,20 @@
 import React from "react";
 import NavbarLinkList from "../navbar/NavbarLinkList";
 import { AppContents } from "@/model/contents";
+import { AppLocale } from "@/model/locale";
 
 interface FooterProps {
   globalContents: AppContents;
+  lang: AppLocale;
 }
 
-export default function Footer({ globalContents }: FooterProps) {
+export default function Footer({ globalContents, lang }: FooterProps) {
   return (
     <footer className="bg-stone-200 text-stone-700">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav aria-label="Footer" className="-mb-6 text-sm/6">
           <ul className="flex flex-wrap justify-center gap-x-12 gap-y-3">
-            <NavbarLinkList globalContents={globalContents} />
+            <NavbarLinkList globalContents={globalContents} lang={lang} />
           </ul>
         </nav>
         <div className="mt-16 flex justify-center gap-x-10">
