@@ -47,7 +47,7 @@ export default async function RootLayout({
       <body className={`antialiased  min-h-screen`}>
         <Header globalContents={globalContents} lang={lang} />
         <main>{children}</main>
-        <Footer globalContents={globalContents} />
+        <Footer globalContents={globalContents} lang={lang} />
       </body>
     </html>
   );
