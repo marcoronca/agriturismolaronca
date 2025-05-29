@@ -14,7 +14,7 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
     const contents = await airtableCache({
         table: AIRTABLE.Media,
         tag: `${lang}_${pageTag}_${API_TAG.media}`,
-        revalidate: process.env.REVALIDATE_PERIOD ? parseInt(process.env.REVALIDATE_PERIOD) : undefined,
+        revalidate: process.env.REVALIDATE_PERIOD_CONTENT_MEDIA ? parseInt(process.env.REVALIDATE_PERIOD_CONTENT_MEDIA) : undefined,
         queryParams: {
             fields: [
                 MediaFields.Key,
@@ -35,7 +35,7 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
             return accumulator
         }
         accumulator[key] = media.map((media) => ({
-            url: "",
+            url: media.url,
             type: media.type,
         }))
         return accumulator
