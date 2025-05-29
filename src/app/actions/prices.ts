@@ -12,7 +12,7 @@ export const getPrices = async (locale: AppLocale) => {
     const prices = await airtableCache({
         table: AIRTABLE.Prices,
         tag: API_TAG.prices,
-        revalidate: 60 * 30,
+        revalidate: process.env.REVALIDATE_PERIOD_ROOMS_PRICES ? parseInt(process.env.REVALIDATE_PERIOD_ROOMS_PRICES) : undefined,
         queryParams: {
             fields: [
                 PriceFields.From,
