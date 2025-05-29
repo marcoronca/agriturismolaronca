@@ -13,7 +13,7 @@ export const getRooms = async (locale: AppLocale): Promise<Room[]> => {
     const roomsRequestOptions = {
         table: AIRTABLE.Rooms,
         tag: API_TAG.rooms,
-        revalidate: 60 * 30,
+        revalidate: process.env.REVALIDATE_PERIOD_ROOMS_PRICES ? parseInt(process.env.REVALIDATE_PERIOD_ROOMS_PRICES) : undefined,
         queryParams: {
             fields: [
                 RoomFields.NameIT,

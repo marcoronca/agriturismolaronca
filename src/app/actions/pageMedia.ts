@@ -14,7 +14,7 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
     const contents = await airtableCache({
         table: AIRTABLE.Media,
         tag: `${lang}_${pageTag}_${API_TAG.media}`,
-        revalidate: 60 * 30,
+        revalidate: process.env.REVALIDATE_PERIOD_CONTENT_MEDIA ? parseInt(process.env.REVALIDATE_PERIOD_CONTENT_MEDIA) : undefined,
         queryParams: {
             fields: [
                 MediaFields.Key,
@@ -24,7 +24,7 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
             filterByFormula: `PAGE = '${page}'`,
         }
     })
-    console.log(`Page Medias for page: ${page} (locale:${locale}, lang:${lang})`)
+    //console.log(`Page Medias for page: ${page} (locale:${locale}, lang:${lang})`)
     console.log(`Medias: ${contents.length}`)
     return contents.reduce<AppMedias>((accumulator, current) => {
         const key = current.fields[MediaFields.Key] as string

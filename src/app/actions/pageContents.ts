@@ -15,7 +15,7 @@ export const getPageContents = async (locale: AppLocale, page: AppPages | undefi
     const contents = await airtableCache({
         table: AIRTABLE.Contents,
         tag: `${lang}_${pageTag}_${API_TAG.contents}`,
-        revalidate: 60 * 30,
+        revalidate: process.env.REVALIDATE_PERIOD_CONTENT_MEDIA ? parseInt(process.env.REVALIDATE_PERIOD_CONTENT_MEDIA) : undefined,
         queryParams: {
             fields: [
                 ContentsFields.ContentKey,
@@ -37,7 +37,7 @@ export const getPageContents = async (locale: AppLocale, page: AppPages | undefi
                 )`,
         }
     })
-    console.log(`Page Contents for page: ${page} (locale:${locale}, lang:${lang})`)
+    //console.log(`Page Contents for page: ${page} (locale:${locale}, lang:${lang})`)
     console.log(`Content: ${contents.length}`)
     return contents.reduce<AppContents>((accumulator, current) => {
         const key = current.fields[ContentsFields.ContentKey] as string
