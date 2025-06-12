@@ -39,5 +39,5 @@ export const airtableCache = async ({
       tags: [tag],
       revalidate: revalidatePeriod
     }
-  )
+  )()
 }
