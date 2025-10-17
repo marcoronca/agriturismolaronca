@@ -25,7 +25,7 @@ export const getPrices = async (locale: AppLocale) => {
                 AND(
                     YEAR(From) >= ${new Date().getFullYear().toString()},
                     YEAR(To) >= ${new Date().getFullYear().toString()},
-                    DATETIME_DIFF(From, TODAY(), "days") >= 0
+                    DATETIME_DIFF(To, TODAY(), "days") >= 0
                 )    
             `,
             sort: [
