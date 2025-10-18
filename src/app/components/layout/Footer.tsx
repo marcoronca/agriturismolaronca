@@ -70,7 +70,7 @@ export default function Footer({ globalContents, lang }: FooterProps) {
           {globalContents.footer_copyright}.
         </p>
         <p className="mt-10 text-center text-sm/6">
-          {globalContents.footer_CIN}.
+          {globalContents.footer_CIN}
         </p>
       </div>
     </footer>
