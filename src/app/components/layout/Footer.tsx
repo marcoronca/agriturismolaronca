@@ -62,7 +62,6 @@ export default function Footer({ globalContents, lang }: FooterProps) {
               className="size-6"
             >
               <path d="M3 15h12"></path>
-              <path d="M15 3v18"></path>
             </svg>
           </a>
         </div>
