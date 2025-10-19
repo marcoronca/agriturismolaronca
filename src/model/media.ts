@@ -1,7 +1,8 @@
 export enum MediaFields {
     Key = 'Key',
     MediaIT = 'MediaIT',
-    MediaEN = 'MediaEN'
+    MediaEN = 'MediaEN',
+    Page = 'Page'
 }
 
 export type Media = {

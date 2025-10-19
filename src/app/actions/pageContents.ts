@@ -15,7 +15,7 @@ export const getPageContents = async (locale: AppLocale, page: AppPages | undefi
     const contents = await airtableCache({
         table: AIRTABLE.Contents,
         tag: `${lang}_${pageTag}_${API_TAG.contents}`,
-        revalidate: process.env.REVALIDATE_PERIOD_CONTENT_MEDIA ? parseInt(process.env.REVALIDATE_PERIOD_CONTENT_MEDIA) : undefined,
+        revalidate: process.env.REVALIDATE_PERIOD_CONTENT ? parseInt(process.env.REVALIDATE_PERIOD_CONTENT) : undefined,
         queryParams: {
             fields: [
                 ContentsFields.ContentKey,
