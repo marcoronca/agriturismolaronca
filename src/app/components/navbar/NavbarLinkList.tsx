@@ -36,11 +36,6 @@ const NavbarLinkList = ({
           {globalContents.link_contacts}
         </Link>
       </li>
-      <li>
-        <Link href={`/${lang}/planimetry`} onClick={onClick}>
-          {globalContents.link_planimetria}
-        </Link>
-      </li>
     </>
   );
 };
