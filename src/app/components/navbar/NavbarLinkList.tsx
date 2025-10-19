@@ -36,7 +36,6 @@ const NavbarLinkList = ({
           {globalContents.link_contacts}
         </Link>
       </li>
-      <li>
     </>
   );
 };
