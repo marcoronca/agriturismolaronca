@@ -23,7 +23,7 @@ const getLocale = (request: NextRequest): AppLocale => {
 }
 
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
     // Check if the pathname already has a locale
     const pathnameHasLocale = AVAILABLE_LOCALES.some(
