@@ -1,6 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import Button from "./button/Button";
+import ImageExt from "./ImageExt";
+import VideoExt from "./VideoExt";
 
 interface HeroSectionProps {
   title: string;
@@ -10,6 +11,7 @@ interface HeroSectionProps {
   imageSrc?: string;
   videoSrc?: string;
   videoType?: string;
+  fallbackSrc: string;
 }
 
 export default function HeroSection({
@@ -19,34 +21,27 @@ export default function HeroSection({
   buttonLink,
   imageSrc,
   videoSrc,
-  videoType = "video/mp4", // Default video type
+  fallbackSrc = "/images/logoRonca.png",
+  videoType = "video/mp4",
 }: HeroSectionProps) {
-  const mediaType = imageSrc ? "image" : "video";
-  // Optional: Handle videoSrc if needed in the future
   return (
     <section className="relative h-[70vh]">
-      {mediaType == "image" ? (
-        <Image
-          src={imageSrc || "/images/logoRonca.png"}
+      {imageSrc ? (
+        <ImageExt
+          src={imageSrc}
           alt={title || "Agriturismo La Ronca"}
-          width={'2560'}
-          height={'100'}
+          fallbackUrl={fallbackSrc}
+          width="2560"
+          height="100"
           className="brightness-75 object-cover w-full h-full"
         />
       ) : (
-        <video
-          className="object-cover w-full h-full"
-          autoPlay
-          loop
-          muted
-          playsInline
-          controls={false}
-          preload="auto"
-          poster="/images/logoRonca.png"
-        >
-          <source src={videoSrc} type={videoType} />
-          Your browser does not support the video tag.
-        </video>
+        <VideoExt
+          src={videoSrc || ""}
+          type={videoType}
+          fallbackUrl={fallbackSrc}
+          className="brightness-75 object-cover w-full h-full"
+        />
       )}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 px-4">{title}</h1>

@@ -1,14 +1,15 @@
-import Image from "next/image";
 import SwiperWrapper from "./Swiper";
+import ImageExt from "./ImageExt";
+import { ImagesSectionData } from "@/model/media";
 
 interface CardProps {
   title: string;
   description: string;
-  imageSrc?: string;
+  imageSrc?: ImagesSectionData;
   cardClassName?: string;
   titleClassName?: string;
   descriptionClassName?: string;
-  imagesCarousel?: string[];
+  imagesCarousel?: ImagesSectionData[];
 }
 
 export function Card({
@@ -27,14 +28,15 @@ export function Card({
   const imageDisplayType = hasCarouselImages
     ? "swiper"
     : imageSrc
-    ? "single"
-    : null;
+      ? "single"
+      : null;
 
   return (
     <div className={`p-6 rounded-lg shadow-md ${cardClassName}`}>
       {imageDisplayType === "single" && (
-        <Image
-          src={imageSrc || "/images/logoRonca.png"}
+        <ImageExt
+          src={imageSrc?.url || ""}
+          fallbackUrl={imageSrc?.fallbackUrl || ''}
           alt={title}
           width={500}
           height={300}
@@ -44,9 +46,10 @@ export function Card({
       {imageDisplayType === "swiper" && (
         <SwiperWrapper className="mb-4 swiper-card">
           {imagesCarousel.map((src, index) => (
-            <Image
+            <ImageExt
               key={index}
-              src={src}
+              src={src.url}
+              fallbackUrl={src.fallbackUrl || ''}
               alt={`${title} image ${index + 1}`}
               width={500}
               height={300}

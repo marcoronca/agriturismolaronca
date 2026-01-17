@@ -42,6 +42,7 @@ export const getPageMedias = async (locale: AppLocale, page: AppPages) => {
         accumulator[key] = media.map((media) => ({
             url: media.url,
             type: media.type,
+            filename: media.filename
         }))
         return accumulator
     }, {})

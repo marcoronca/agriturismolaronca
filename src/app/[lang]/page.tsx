@@ -1,7 +1,7 @@
 import { AppLocale } from "@/model/locale";
 import HeroSection from "../components/ui/HeroSection";
 import { getPageContents } from "../actions/pageContents";
-import { AppPages } from "@/model/app";
+import { AppPages, PublicImagesPath } from "@/model/app";
 import { getPageMedias } from "../actions/pageMedia";
 import { HeaderSection } from "../components/ui/HeaderSection";
 import StructureSection from "../components/StructureSection";
@@ -16,6 +16,10 @@ export default async function Home(props: {
     getPageMedias(lang, AppPages.Home),
   ]);
 
+  const fallBackSrc = homeMedia.hero_section_image?.[0].url ?
+    `${PublicImagesPath.home}/fb_${homeMedia.hero_section_image?.[0].filename}` :
+    `${PublicImagesPath.home}/fb_${homeMedia.hero_section_video?.[0].filename}`
+
   return (
     <>
       <HeroSection
@@ -25,6 +29,7 @@ export default async function Home(props: {
         buttonLink={homeContents.hero_section_cta_link}
         videoSrc={homeMedia.hero_section_video?.[0].url}
         imageSrc={homeMedia.hero_section_image?.[0].url}
+        fallbackSrc={fallBackSrc}
         videoType={homeMedia.hero_section_video?.[0].type}
       />
 

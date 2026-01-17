@@ -4,8 +4,9 @@ import { Card } from "@/app/components/ui/Card";
 import { HeaderSection } from "@/app/components/ui/HeaderSection";
 import HeroSection from "@/app/components/ui/HeroSection";
 import { getServicesSectionData } from "@/app/utils/ui";
-import { AppPages } from "@/model/app";
+import { AppPages, PublicImagesPath } from "@/model/app";
 import { AppLocale } from "@/model/locale";
+import { ImagesSectionData } from "@/model/media";
 
 export default async function Services(props: {
   params: Promise<{ lang: AppLocale }>;
@@ -23,6 +24,7 @@ export default async function Services(props: {
       <HeroSection
         title={contents.hero_section_title}
         imageSrc={media.hero_section_image?.[0].url}
+        fallbackSrc={`${PublicImagesPath.services}/fb_${media.hero_section_image?.[0].filename}`}
         subtitle=""
       />
 
@@ -34,7 +36,7 @@ export default async function Services(props: {
               key={service.title as string}
               title={service.title as string}
               description={service.description as string}
-              imagesCarousel={service.images as string[]}
+              imagesCarousel={service.images as ImagesSectionData[]}
             />
           ))}
         </div>

@@ -7,7 +7,7 @@ import { PricingCard } from "@/app/components/PricingCard";
 import { HeaderSection } from "@/app/components/ui/HeaderSection";
 import HeroSection from "@/app/components/ui/HeroSection";
 import { getRoomPriceForDate } from "@/app/utils/rooms";
-import { AppPages } from "@/model/app";
+import { AppPages, PublicImagesPath } from "@/model/app";
 import { AppLocale } from "@/model/locale";
 
 export default async function Prices(props: {
@@ -26,6 +26,7 @@ export default async function Prices(props: {
         title={pricesContents.hero_section_title}
         subtitle={pricesContents.hero_section_subtitle}
         imageSrc={pricesMedia.hero_section_image?.[0].url}
+        fallbackSrc={`${PublicImagesPath.prices}/fb_${pricesMedia.hero_section_image?.[0].filename}`}
       />
 
       <div className="container mx-auto px-4 py-16">

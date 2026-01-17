@@ -48,3 +48,14 @@ export const AppPagesRoutes: AppPagesRoutesType = {
         changeFrequency: 'yearly'
     },
 } as const
+
+
+const basePublicImagePath = '/images'
+export const PublicImagesPath = {
+    home: `${basePublicImagePath}/home`,
+    gallery: `${basePublicImagePath}/gallery`,
+    prices: `${basePublicImagePath}/prices`,
+    services: `${basePublicImagePath}/services`,
+    rooms: `${basePublicImagePath}/rooms`,
+    structure: `${basePublicImagePath}/structure`,
+} as const

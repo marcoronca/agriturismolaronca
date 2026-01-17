@@ -1,9 +1,9 @@
 import { getPageContents } from "@/app/actions/pageContents";
 import { getPageMedias } from "@/app/actions/pageMedia";
 import GridEffect from "@/app/components/ui/bg-effects/GridEffect";
-import { AppPages } from "@/model/app";
+import ImageExt from "@/app/components/ui/ImageExt";
+import { AppPages, PublicImagesPath } from "@/model/app";
 import { AppLocale } from "@/model/locale";
-import Image from "next/image";
 
 export default async function Gallery(props: {
   params: Promise<{ lang: AppLocale }>;
@@ -35,8 +35,9 @@ export default async function Gallery(props: {
           {gallery.map((image, index) => (
             <div key={index} className="relative pb-[100%]">
               <div className="absolute inset-0">
-                <Image
-                  src={image.url || "/images/logoRonca.png"}
+                <ImageExt
+                  src={image.url || `${PublicImagesPath.gallery}/${image.filename}`}
+                  fallbackUrl={`${PublicImagesPath.gallery}/fb_${image.filename}`}
                   alt={"Agriturismo La Ronca"}
                   width={500}
                   height={500}
