@@ -6,6 +6,8 @@ import Image from "next/image";
 import MailToButton from "./ui/MailToButton";
 import { Media } from "@/model/media";
 import SwiperWrapper from "./ui/Swiper";
+import ImageExt from "./ui/ImageExt";
+import { PublicImagesPath } from "@/model/app";
 
 interface PricingCardProps {
   name: string;
@@ -44,9 +46,10 @@ export function PricingCard({
       {images && images.length > 0 && (
         <SwiperWrapper className="mb-4 w-full rounded-lg swiper-card">
           {images.map((image, index) => (
-            <Image
+            <ImageExt
               key={index}
               src={image.url}
+              fallbackUrl={`${PublicImagesPath.rooms}/fb_${image.filename}`}
               alt={name || "Agriturismo La Ronca"}
               height={200}
               width={300}

@@ -1,6 +1,7 @@
 import { AppContents } from "@/model/contents";
 import { AppMedias } from "@/model/media";
 import { getNumberOfElementsForSection } from "./content";
+import { PublicImagesPath } from "@/model/app";
 
 
 export const STRUCTURE_SECTION_PREFIX = "structure_section_" as const;
@@ -49,7 +50,10 @@ export const getStructureSectionData = (contents: AppContents, mediaContents: Ap
         {
             title: (i, c) => c[`${STRUCTURE_SECTION_PREFIX}${i}_title`] || "",
             body: (i, c) => c[`${STRUCTURE_SECTION_PREFIX}${i}_body`] || "",
-            imageSrc: (i, _, m) => m?.[`${STRUCTURE_SECTION_PREFIX}${i}_image`]?.[0].url || "",
+            imageSrc: (i, _, m) => m?.[`${STRUCTURE_SECTION_PREFIX}${i}_image`]?.map(media => ({
+                url: media.url,
+                fallbackUrl: `${PublicImagesPath.structure}/fb_${media.filename}`
+            }))[0] || {},
         },
         mediaContents
     );
@@ -82,7 +86,10 @@ export const getServicesSectionData = (contents: AppContents, mediaContents: App
         {
             title: (i, c) => c[`${SERVICES_SECTION_PREFIX}${i}_title`] || "",
             description: (i, c) => c[`${SERVICES_SECTION_PREFIX}${i}_body`] || "",
-            images: (i, _, m) => m?.[`${SERVICES_SECTION_PREFIX}${i}_images`]?.map(media => media.url) || [],
+            images: (i, _, m) => m?.[`${SERVICES_SECTION_PREFIX}${i}_images`]?.map(media => ({
+                url: media.url,
+                fallbackUrl: `${PublicImagesPath.services}/fb_${media.filename}`
+            })) || [],
         },
         mediaContents
     );

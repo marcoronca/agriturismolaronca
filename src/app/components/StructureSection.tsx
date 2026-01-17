@@ -1,5 +1,5 @@
 import { AppContents } from "@/model/contents";
-import { AppMedias } from "@/model/media";
+import { AppMedias, ImagesSectionData } from "@/model/media";
 import { HeaderSection } from "./ui/HeaderSection";
 import { Card } from "./ui/Card";
 import { getStructureSectionData } from "../utils/ui";
@@ -31,9 +31,9 @@ const StructureSection = (props: StructureSectionProps) => {
               cardClassName="bg-white"
               titleClassName="text-stone-700"
               descriptionClassName="text-stone-600"
-              title={structure.title}
-              description={structure.body}
-              imageSrc={structure.imageSrc}
+              title={structure.title as string}
+              description={structure.body as string}
+              imageSrc={structure.imageSrc as ImagesSectionData}
             />
           ))}
         </div>
